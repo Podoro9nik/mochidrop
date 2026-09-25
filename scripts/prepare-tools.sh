@@ -37,5 +37,6 @@ for binary in "$target/yt-dlp" "$target/gallery-dl" "$target/mochidrop-torrent";
 done
 "$target/yt-dlp" --version
 "$target/gallery-dl" --version
-"$target/gallery-dl" --list-extractors | grep -qi mangadex
+"$target/gallery-dl" --list-extractors > "$root/build/gallery-extractors.txt"
+grep -qi mangadex "$root/build/gallery-extractors.txt"
 "$target/mochidrop-torrent" --version
