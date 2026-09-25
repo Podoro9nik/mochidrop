@@ -10,5 +10,7 @@ MochiDrop.xcworkspace/
 *.xcuserdata/
 .macos-venv/
 .macos-pyinstaller/
+__pycache__/
+*.pyc
 MochiDrop/Sources/Generated/
 MochiDrop/Resources/tools/

@@ -1,4 +1,4 @@
-from gallery_dl.__main__ import main
+from gallery_dl import main
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
