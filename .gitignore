@@ -1,0 +1,14 @@
+.DS_Store
+DerivedData/
+build/
+target/
+.build/
+.swiftpm/
+MochiDrop.xcodeproj/
+MochiDrop.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+.macos-venv/
+.macos-pyinstaller/
+MochiDrop/Sources/Generated/
+MochiDrop/Resources/tools/

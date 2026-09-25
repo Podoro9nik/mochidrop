@@ -1,0 +1,44 @@
+name: macOS build
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x86_64
+    runs-on: ${{ matrix.runner }}
+    env:
+      MACOSX_DEPLOYMENT_TARGET: "15.0"
+      CARGO_BUILD_JOBS: "2"
+      MACOS_XCODE_CONTAINER: ${{ vars.MACOS_XCODE_CONTAINER }}
+      MACOS_SCHEME: ${{ vars.MACOS_SCHEME }}
+      MACOS_APP_NAME: ${{ vars.MACOS_APP_NAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install XcodeGen
+        run: command -v xcodegen >/dev/null || brew install xcodegen
+      - name: Build bundled downloaders
+        run: bash scripts/prepare-tools.sh
+      - name: Build app, ZIP and DMG
+        run: bash scripts/build-macos.sh
+      - name: Upload app, ZIP and DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-build-${{ matrix.arch }}
+          path: ${{ env.ARTIFACT_DIR }}/*
+          if-no-files-found: error

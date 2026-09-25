@@ -1,0 +1,37 @@
+name: MochiDrop
+options:
+  bundleIdPrefix: app.mochidrop
+  deploymentTarget:
+    macOS: "15.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: "NO"
+targets:
+  MochiDrop:
+    type: application
+    platform: macOS
+    sources:
+      - path: MochiDrop/Sources
+      - path: MochiDrop/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.mochidrop.native
+        PRODUCT_NAME: MochiDrop
+        GENERATE_INFOPLIST_FILE: "YES"
+        INFOPLIST_KEY_CFBundleDisplayName: MochiDrop
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.entertainment
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGNING_ALLOWED: "NO"
+schemes:
+  MochiDrop:
+    build:
+      targets:
+        MochiDrop: all
+    run:
+      config: Debug
+    archive:
+      config: Release
+    management:
+      shared: true
