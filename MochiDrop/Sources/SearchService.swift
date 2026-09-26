@@ -1,5 +1,4 @@
 import Foundation
-import FoundationXML
 
 enum SearchService {
     static func providers(for kind: MediaKind) -> [String] {

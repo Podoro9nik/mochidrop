@@ -34,6 +34,7 @@ fi
 
 xcodebuild "$container_flag" "$container" -scheme "$scheme" -configuration Release \
   -destination 'generic/platform=macOS' -derivedDataPath "$root/DerivedData" \
+  "ARCHS=$(uname -m)" ONLY_ACTIVE_ARCH=YES \
   CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
 
 app_name="${MACOS_APP_NAME:-MochiDrop}"
