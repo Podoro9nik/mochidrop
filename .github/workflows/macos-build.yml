@@ -46,3 +46,12 @@ jobs:
           name: macOS-build-${{ matrix.arch }}
           path: ${{ env.ARTIFACT_DIR }}/*
           if-no-files-found: error
+      - name: Launch GUI smoke test
+        run: bash scripts/smoke-gui.sh
+      - name: Upload GUI screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS-gui-smoke-${{ matrix.arch }}
+          path: build/gui-smoke-${{ matrix.arch }}.png
+          if-no-files-found: ignore
