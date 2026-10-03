@@ -14,3 +14,5 @@ __pycache__/
 *.pyc
 MochiDrop/Sources/Generated/
 MochiDrop/Resources/tools/
+# Local concept studies; approved artwork is in design/icon/.
+/design/icon-concepts/
